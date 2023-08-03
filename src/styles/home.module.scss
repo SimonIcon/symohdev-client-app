@@ -1,0 +1,13 @@
+.navbar {
+
+    @media screen and (max-width: 600px) {}
+
+    // Tablet
+    @media screen and (min-width: 600px) and (max-width: 850px) {}
+
+    // Desktop
+    @media screen and (min-width: 850px) and (max-width: 1100px) {}
+
+    // Large screens
+    @media screen and (min-width: 1100px) {}
+}
