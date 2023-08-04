@@ -19,12 +19,11 @@ const Navbar = () => {
                         </div>
                     </div>
                 </div>
-                <div className='w-[40%] sm:w-[35%] md:w-[30%] lg:w-[20%] flex flex-row items-center justify-between'>
-                    <Typography className="text-sm capitalize font-semibold hover:text-pink-500">projects</Typography>
-                    <button
-                        className='bg-[#0a192f] outline-none overflow-hidden text-white hover:bg-black-600
+
+                <button
+                    className='bg-[#0a192f] outline-none overflow-hidden text-white hover:text-gray-300
                          font-semibold capitalize rounded-md px-4 py-2 text-xs'>login</button>
-                </div>
+
             </div>
             <div className='w-full h-[30px] flex flex-row justify-center items-start'>
                 <ul className='flex flex-row w-[60%] sm:w-[50%] md:w-[40%] lg:w-[35%] justify-between items-center'>

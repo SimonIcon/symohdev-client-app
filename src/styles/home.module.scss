@@ -1,3 +1,19 @@
+.body {
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+        width: 1px;
+        color: pink;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        width: 2px;
+        color: pink;
+
+    }
+}
+
+
 .navbar {
 
     @media screen and (max-width: 600px) {}

@@ -6,7 +6,7 @@ import skillsData from '../utils/skills'
 const Footer = () => {
     return (
         <div className='w-full'>
-            <div className='w-full flex flex-row justify-between items-center px-5 py-3'>
+            <div className='w-full flex flex-row justify-between items-center px-5 sm:px-10 md:px-20 py-3'>
                 <div>
                     <Typography className="text-cyan-500 font-semibold">@symohdev</Typography>
                 </div>
@@ -34,7 +34,7 @@ const Footer = () => {
                         }
                     </div>
                 </div>
-                <div className='pt-5 flex flex-col justify-center items-start pb-5 mb-4'>
+                <div className='pt-5 flex flex-col md:flex-row justify-center items-start pb-5 mb-4'>
                     <div className="w-[80%] sm:w-[75%] md:w-[60%] flex flex-row  justify-center mb-2">
                         <Typography className="capitalize font-semibold text-sm mr-6">email</Typography>
                         <Typography className="text-sm font-light lowercase tracking-tighter text-start">symohdev21@gmail.com</Typography>
