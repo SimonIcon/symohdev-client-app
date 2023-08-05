@@ -5,6 +5,10 @@ import HomePage from './pages/HomePage';
 import ChatPage from './pages/ChatPage';
 import ProjectPage from './pages/ProjectPage';
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import AuthPage from "./pages/AuthPage";
+import SignIn from "./component/SignIn";
+import SignUp from "./component/SignUp";
+import RecoverPassword from "./component/RecoverPassword";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -23,6 +27,23 @@ const App = () => {
         {
           path: "/project",
           element: <ProjectPage />
+        },
+        {
+          path: "/auth",
+          element: <AuthPage />,
+          children: [
+            {
+              path: "/auth",
+              element: <SignIn />
+
+            }, {
+              path: "/auth/register",
+              element: <SignUp />
+            }, {
+              path: "/auth/recover",
+              element: <RecoverPassword />
+            }
+          ]
         }
       ],
     },

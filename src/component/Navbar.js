@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Typography } from "@material-tailwind/react"
 import mypic from "../utils/image.js"
 import { Link } from "react-scroll"
+import { appContext } from '../context/AppContext.js'
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
+    const { setLoginModal } = useContext(appContext)
+    const navigate = useNavigate()
     return (
         <div className='fixed z-50 w-full h-[130px] px-2 bg-[#0a192f] text-gray-300'>
             <div className='w-full h-[100px] flex flex-row justify-between items-center'>
@@ -20,7 +24,10 @@ const Navbar = () => {
                     </div>
                 </div>
 
-                <button
+                <button onClick={() => {
+                    setLoginModal(true)
+                    navigate('/auth')
+                }}
                     className='bg-[#0a192f] outline-none overflow-hidden text-white hover:text-gray-300
                          font-semibold capitalize rounded-md px-4 py-2 text-xs'>login</button>
 
