@@ -1,28 +1,41 @@
 import { Typography } from '@material-tailwind/react'
 import { useFormik } from 'formik'
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { appContext } from '../context/AppContext'
+import { Toaster, toast } from 'react-hot-toast'
+import isValidEmail from '../utils/emailValidation'
 
 const RecoverPassword = () => {
     const navigate = useNavigate()
+    const { handleForgotPassword } = useContext(appContext)
     const formik = useFormik({
         initialValues: {
             email: ""
         },
         validate: async (values) => {
-
+            const error = {}
+            if (!isValidEmail(values.email)) {
+                error.email = toast.error("invalid email")
+            } else if (values.email.length === "") {
+                error.email = toast.error("email required")
+            }
+            return error
         },
         validateOnBlur: false,
         validateOnChange: false,
         onSubmit: async (values) => {
-            console.log(values)
-            navigate('/auth/')
+            handleForgotPassword(values.email)
+            setTimeout(() => {
+                navigate('/auth/')
+            }, 1500);
         }
     })
 
 
     return (
         <div className='w-full h-full flex flex-col justify-center items-center'>
+            <Toaster position='top-right' reverseOrder={false}></Toaster>
             <Typography className="text-sm tracking-tighter font-semibold text-center"
             >Recover your password using registration email</Typography>
             <form className='w-full flex flex-col justify-center items-center' onSubmit={formik.handleSubmit}>

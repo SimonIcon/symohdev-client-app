@@ -3,10 +3,14 @@ import { useFormik } from "formik"
 import { Typography } from "@material-tailwind/react"
 import { useNavigate } from "react-router-dom"
 import { appContext } from '../context/AppContext'
+import isValidEmail from '../utils/emailValidation'
+import { Toaster, toast } from 'react-hot-toast'
+
 
 const SignIn = () => {
     const navigate = useNavigate()
-    const { createUser } = useContext(appContext)
+    const { loginSuccess, handleSignIn, setLoginModal } = useContext(appContext)
+
 
     // handling formik
     const formik = useFormik({
@@ -17,16 +21,32 @@ const SignIn = () => {
         validateOnBlur: false,
         validateOnChange: false,
         validate: async (values) => {
-
+            const error = {}
+            if (!isValidEmail(values.email)) {
+                error.email = toast.error("invalid email")
+            } else if (!values.password || values.password.length === "") {
+                error.password = toast.error('password required')
+            } else if (values.password.length < 6) {
+                error.password = toast.error("weak password")
+            }
+            return error
         },
         onSubmit: async (values) => {
-            createUser()
+            handleSignIn(values.email, values.password)
+            if (loginSuccess === true) {
+                setTimeout(() => {
+                    navigate('/')
+                    setLoginModal(false)
+                }, 1500);
+            }
+
         }
     })
     return (
-        <div className='w-full h-full'>
+        <div className='w-full h-full flex flex-col justify-center items-center'>
+            <Toaster position='top-right' reverseOrder={false}></Toaster>
             <Typography className="capitalize font-semibold text-sm text-center">login</Typography>
-            <form className='flex flex-col justify-center items-center' onSubmit={formik.handleSubmit}>
+            <form className='w-full flex flex-col justify-center items-center' onSubmit={formik.handleSubmit}>
                 <input type='text' placeholder='your email' id="email"
                     className='w-[70%] outline-none py-3 mt-4 px-4 lowercase bg-gray-200 rounded-md font-semibold text-sm'
                     value={formik.values.email} onChange={formik.handleChange}

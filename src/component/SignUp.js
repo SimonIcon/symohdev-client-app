@@ -40,7 +40,7 @@ const SignUp = () => {
             createUser(values.email, values.password, values.country, values.username)
             if (loginSuccess === true) {
                 setTimeout(() => {
-                    navigate('/')
+                    navigate('/auth')
                 }, 1500);
             }
 
